@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "prettify": "prettier --trailing-comma es5 --single-quote --write './template/src/**/*.{ts,tsx}'",
-    "lint": "eslint './template/src/**/*.{ts,tsx}'",
-    "type-check": "cd template && tsc --noEmit"
+    "lint": "eslint -f table './template/src/**/*.{ts,tsx}' --ext .ts --ext .tsx",
+    "lint:fix": "eslint --fix -f table './template/src/**/*.{ts,tsx}' --ext .ts --ext .tsx",
+    "type-check": "cd template && tsc --noEmit",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "react",
@@ -37,6 +39,9 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
     "@reduxjs/toolkit": "^1.2.5",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.7",
+    "@semantic-release/npm": "^7.0.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@types/jest": "^24.0.0",
@@ -62,6 +67,7 @@
     "react-scripts": "^3.4.0",
     "react-test-renderer": "^16.12.0",
     "redux": "^4.0.4",
+    "semantic-release": "^17.1.0",
     "typescript": "~3.8.2"
   }
 }
