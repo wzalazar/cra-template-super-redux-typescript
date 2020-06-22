@@ -20,14 +20,14 @@
   "main": "template.json",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reduxjs/cra-template-redux-typescript.git"
+    "url": "https://github.com/wzalazar/cra-template-super-redux-typescript.git"
   },
   "license": "MIT",
   "engines": {
     "node": ">=8.10"
   },
   "bugs": {
-    "url": "https://github.com/reduxjs/cra-template-redux-typescript/issues"
+    "url": "https://github.com/wzalazar/cra-template-super-redux-typescript/issues"
   },
   "files": [
     "template",
