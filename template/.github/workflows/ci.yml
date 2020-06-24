@@ -1,0 +1,44 @@
+name: Test
+on: [push]
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Install NVM
+      run: |
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+        source $HOME/.bashrc
+        export NVM_DIR=$HOME/.nvm
+        source $HOME/.nvm/nvm.sh
+        nvm install node
+        node -v
+        npm -v
+    - uses: actions/checkout@v1
+    - name: Install custom NodeJS version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        export NVM_DIR=$HOME/.nvm
+        source $HOME/.nvm/nvm.sh
+        nvm install
+        nvm use
+        node -v
+        npm -v
+    - name: npm install
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm install
+    - name: npm run lint
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm run lint
+    - name: npm run semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm run semantic-release
