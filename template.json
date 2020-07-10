@@ -25,7 +25,8 @@
       "@semantic-release/git": "^9.0.0",
       "semantic-release": "^17.1.0",
       "husky": "4.2.5",
-      "lint-staged": "10.2.11"
+      "lint-staged": "10.2.11",
+      "codecov": "3.7.0"
     }
   },
   "scripts": {
@@ -34,6 +35,8 @@
     "build": "craco build",
     "test": "craco test",
     "lint": "eslint -f table src --ext .ts --ext .tsx",
-    "lint:fix": "eslint --fix -f table src --ext .ts --ext .tsx"
+    "lint:fix": "eslint --fix -f table src --ext .ts --ext .tsx",
+    "semantic-release": "semantic-release",
+    "codecov": "codecov"
   }
 }
