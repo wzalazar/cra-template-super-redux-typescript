@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install custom NodeJS version
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         export NVM_DIR=$HOME/.nvm
         source $HOME/.nvm/nvm.sh
@@ -27,18 +27,24 @@ jobs:
         nvm use
         node -v
         npm -v
-    - name: npm install
+    - name: yarn
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: npm install
-    - name: npm run lint
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: yarn
+    - name: Lint
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: npm run lint
-    - name: npm run semantic-release
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: yarn lint
+    - name: Coverage
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: yarn test --coverage
+    - name: Codecov
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: yarn codecov
+    - name: Semantic Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: npm run semantic-release
